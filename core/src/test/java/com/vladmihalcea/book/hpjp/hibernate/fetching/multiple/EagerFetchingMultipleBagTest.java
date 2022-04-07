@@ -6,7 +6,7 @@ import org.hibernate.annotations.QueryHints;
 import org.hibernate.loader.MultipleBagFetchException;
 import org.junit.Test;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -114,7 +114,6 @@ public class EagerFetchingMultipleBagTest extends AbstractPostgreSQLIntegrationT
                 where p.id between :minId and :maxId""", Post.class)
             .setParameter("minId", 1L)
             .setParameter("maxId", 50L)
-            .setHint(QueryHints.PASS_DISTINCT_THROUGH, false)
             .getResultList();
 
             posts = entityManager.createQuery("""
@@ -123,7 +122,6 @@ public class EagerFetchingMultipleBagTest extends AbstractPostgreSQLIntegrationT
                 left join fetch p.tags t
                 where p in :posts""", Post.class)
             .setParameter("posts", posts)
-            .setHint(QueryHints.PASS_DISTINCT_THROUGH, false)
             .getResultList();
 
             assertEquals(POST_COUNT, posts.size());
@@ -147,7 +145,6 @@ public class EagerFetchingMultipleBagTest extends AbstractPostgreSQLIntegrationT
                 where p.id between :minId and :maxId""", Post.class)
             .setParameter("minId", 1L)
             .setParameter("maxId", 50L)
-            .setHint(QueryHints.PASS_DISTINCT_THROUGH, false)
             .getResultList();
 
             posts = entityManager.createQuery("""
@@ -157,7 +154,6 @@ public class EagerFetchingMultipleBagTest extends AbstractPostgreSQLIntegrationT
                 where p.id between :minId and :maxId""", Post.class)
             .setParameter("minId", 1L)
             .setParameter("maxId", 50L)
-            .setHint(QueryHints.PASS_DISTINCT_THROUGH, false)
             .getResultList();
 
             assertEquals(POST_COUNT, posts.size());

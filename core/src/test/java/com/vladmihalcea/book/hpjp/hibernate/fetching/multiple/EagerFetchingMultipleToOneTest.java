@@ -6,7 +6,7 @@ import org.hibernate.annotations.QueryHints;
 import org.hibernate.loader.MultipleBagFetchException;
 import org.junit.Test;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
